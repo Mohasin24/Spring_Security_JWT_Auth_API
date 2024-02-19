@@ -27,7 +27,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthResponseDto> login(@RequestBody AuthRequestDto authRequestDto){
 
         String jwtToken = authService.login(authRequestDto.username(),authRequestDto.password());
-
+        System.out.println(jwtToken);
         AuthResponseDto authResponseDto = new AuthResponseDto(jwtToken, AuthStatus.LOGIN_SUCCESS);
 
         return ResponseEntity
@@ -37,7 +37,7 @@ public class AuthenticationController {
 
     @PostMapping("/sign-up")
     public ResponseEntity<AuthResponseDto> signUp(@RequestBody AuthRequestDto authRequestDto){
-
+        System.out.println(authRequestDto);
         try {
             String jwtToken = authService.signUp(authRequestDto.name(),authRequestDto.username(),authRequestDto.password());
 
@@ -48,7 +48,7 @@ public class AuthenticationController {
                     .body(authResponseDto);
 
         } catch (Exception e) {
-
+            System.out.println(e);
             AuthResponseDto authResponseDto = new AuthResponseDto(null,AuthStatus.USER_NOT_CREATED);
 
             return ResponseEntity

@@ -6,12 +6,14 @@ import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.crypto.SecretKey;
+import java.util.UUID;
 
 
 @Slf4j
 public class JwtUtils
 {
     private static final SecretKey SECRET_KEY = Jwts.SIG.HS256.key().build();
+    private static final String ISSUER = "Mohasin_Patel";
 
     // Don't allow for Object creation of the JwtUtils class it should be read only
     private JwtUtils(){}
@@ -42,5 +44,16 @@ public class JwtUtils
         }
 
         return null;
+    }
+
+    public static String generateJwtToken(String username) {
+        return  Jwts.builder()
+                .id(UUID.randomUUID().toString())
+                .issuer(ISSUER)
+                .subject(username)
+                .signWith(SECRET_KEY)
+                .compact();
+
+
     }
 }

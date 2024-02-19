@@ -1,13 +1,13 @@
 package com.authentication.model;
 
-import jakarta.persistence.Id;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.List;
 
-@Document(collation = "user_details")
+@Document(collection = "User")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
